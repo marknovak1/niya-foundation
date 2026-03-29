@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NIYA Foundation Design System
+   Navy #1B3A6B, Teal #0D7377, Gold #C9952A
+   Fonts: Cormorant Garamond (headings) + Outfit (body)
+*/
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 0 0% 100%;
+    --foreground: 240 28% 14%;
+
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 240 28% 14%;
+
+    /* Popover surfaces */
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 28% 14%;
+
+    /* Primary - Navy */
+    --primary: 215 60% 26%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Teal */
+    --secondary: 182 80% 26%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted */
+    --muted: 220 13% 95%;
+    --muted-foreground: 220 9% 34%;
+
+    /* Accent - Gold */
+    --accent: 41 66% 48%;
+    --accent-foreground: 216 66% 19%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 215 60% 26%;
+
+    --radius: 0.375rem;
+
+    /* Extended palette */
+    --navy: 215 60% 26%;
+    --navy-deep: 216 66% 19%;
+    --teal: 182 80% 26%;
+    --teal-mid: 184 76% 34%;
+    --teal-light: 180 39% 93%;
+    --gold: 41 66% 48%;
+    --gold-light: 44 86% 59%;
+    --cream: 0 0% 100%;
+    --grey: 220 9% 34%;
+    --grey-light: 220 14% 96%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(216 66% 19%) 0%, hsl(215 60% 26%) 50%, hsl(210 55% 30%) 100%);
+    --gradient-teal: linear-gradient(135deg, hsl(210 55% 30%) 0%, hsl(182 80% 26%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsla(215, 60%, 26%, 0.08);
+    --shadow-medium: 0 8px 30px -8px hsla(215, 60%, 26%, 0.12);
+    --shadow-large: 0 20px 50px -12px hsla(215, 60%, 26%, 0.15);
+    --shadow-glow: 0 0 40px hsla(41, 66%, 48%, 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 216 66% 19%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 41 66% 48%;
+    --sidebar-primary-foreground: 216 66% 19%;
+    --sidebar-accent: 215 60% 26%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 40% 30%;
+    --sidebar-ring: 41 66% 48%;
+  }
+
+  .dark {
+    --background: 216 66% 10%;
+    --foreground: 0 0% 95%;
+    --card: 216 66% 13%;
+    --card-foreground: 0 0% 95%;
+    --popover: 216 66% 13%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 41 66% 48%;
+    --primary-foreground: 216 66% 19%;
+    --secondary: 182 80% 26%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 216 40% 20%;
+    --muted-foreground: 220 13% 65%;
+    --accent: 41 66% 48%;
+    --accent-foreground: 216 66% 19%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 216 40% 25%;
+    --input: 216 40% 25%;
+    --ring: 41 66% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    @apply font-semibold;
+    line-height: 1.15;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-medium);
+  }
+
+  .glow-warm {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-[1160px] mx-auto px-4 sm:px-8;
+  }
+
+  .eyebrow {
+    font-family: 'Outfit', sans-serif;
+    @apply text-xs font-semibold tracking-[3px] uppercase;
+    color: hsl(var(--teal));
+  }
+
+  .animated-underline {
+    position: relative;
+  }
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--gold));
+    transition: width 0.3s ease;
+  }
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Data card */
+  .data-card {
+    background: hsl(var(--grey-light));
+    border-left: 4px solid hsl(var(--teal));
+    @apply p-7 mb-5;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background: hsl(var(--gold));
+    color: hsl(var(--navy-deep));
+    @apply px-8 py-4 font-semibold text-[0.95rem] tracking-wide inline-block no-underline transition-all duration-200;
+    font-family: 'Outfit', sans-serif;
+  }
+  .btn-primary:hover {
+    background: hsl(var(--gold-light));
+    @apply -translate-y-0.5;
+  }
+
+  .btn-outline-hero {
+    @apply px-8 py-4 font-medium text-[0.95rem] tracking-wide inline-block no-underline transition-all duration-200;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.35);
+    font-family: 'Outfit', sans-serif;
+  }
+  .btn-outline-hero:hover {
+    border-color: hsl(var(--gold));
+    color: hsl(var(--gold));
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
+  .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+  .animate-scale-in { animation: scale-in 0.5s ease-out forwards; }
+  .animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+}

@@ -1,0 +1,13 @@
+project_id = "huukfqztcbhuuxyedegx"
+
+[functions.assign-admin-role]
+verify_jwt = false
+
+[functions.submit-form]
+verify_jwt = false
+
+[functions.manage-user-roles]
+verify_jwt = false
+
+[functions.translate-content]
+verify_jwt = false
