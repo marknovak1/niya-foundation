@@ -93,7 +93,7 @@ const News = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary to-primary/80">
+      <section className="relative pt-28 pb-20 bg-gradient-to-br from-primary to-primary/80">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
             {t.news.title}

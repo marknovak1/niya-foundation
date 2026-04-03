@@ -7,7 +7,6 @@ export function PartenairesSection() {
         "Banque de développement du Canada (BDC)",
         "Caisses Desjardins",
         "Banque Nationale, RBC, BMO, Scotia",
-        "Fonds de solidarité FTQ",
         "Investissement Québec",
       ],
     },
@@ -50,7 +49,7 @@ export function PartenairesSection() {
         <div className="text-center mb-14">
           <span className="eyebrow mb-4 block">Écosystème de partenaires</span>
           <h2 className="text-primary text-[clamp(2rem,4vw,3.2rem)] font-semibold mb-5">
-            NIYA ne travaille pas seule.
+            NIYA ne travaille pas seule
           </h2>
           <p className="mx-auto max-w-[520px] text-muted-foreground text-[1.05rem] leading-[1.75]">
             Nous construisons un écosystème de partenaires institutionnels dont les objectifs

@@ -86,16 +86,12 @@ export function Header() {
             </Link>
           </li>
           <li>
-            <a
-              href="/#cta"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("/#cta");
-              }}
+            <Link
+              to="/devenir-membre"
               className="bg-primary text-white border border-primary px-5 py-2.5 text-sm font-semibold tracking-wide hover:bg-primary/90 transition-colors no-underline"
             >
               Devenir membre
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -150,16 +146,13 @@ export function Header() {
               <LogIn className="h-4 w-4" />
               Connexion
             </Link>
-            <a
-              href="/#cta"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("/#cta");
-              }}
+            <Link
+              to="/devenir-membre"
+              onClick={() => setMobileMenuOpen(false)}
               className="block mt-3 bg-primary text-white border border-primary px-5 py-3 text-sm font-semibold text-center no-underline"
             >
               Devenir membre
-            </a>
+            </Link>
           </div>
         </div>
       )}

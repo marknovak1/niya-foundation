@@ -5,7 +5,7 @@ export function ImpactSection() {
         <div className="mb-16">
           <span className="eyebrow mb-4 block">Impact projeté</span>
           <h2 className="text-primary text-[clamp(2rem,4vw,3.2rem)] font-semibold mb-5">
-            Des chiffres réels.<br />Des projections défendables
+            Des chiffres réels<br />Des projections défendables
           </h2>
           <p className="max-w-[560px] text-muted-foreground text-[1.05rem] leading-[1.75]">
             Toutes les projections NIYA sont basées sur des données publiques vérifiables et des

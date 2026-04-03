@@ -19,7 +19,7 @@ export function HeroSection() {
           className="absolute inset-0"
           style={{
             background: `
-              linear-gradient(135deg, hsla(216, 66%, 19%, 0.60) 0%, hsla(215, 60%, 26%, 0.50) 50%, hsla(210, 55%, 30%, 0.45) 100%)
+              linear-gradient(135deg, hsla(238, 75%, 18%, 0.60) 0%, hsla(238, 70%, 26%, 0.50) 50%, hsla(238, 65%, 30%, 0.45) 100%)
             `,
           }}
         />
@@ -56,7 +56,7 @@ export function HeroSection() {
       </div>
 
       {/* Hero Stats — overlaps hero and white section below */}
-      <div className="relative lg:absolute lg:bottom-0 lg:translate-y-1/2 left-0 right-0 z-[2] mt-8 lg:mt-0">
+      <div className="relative lg:absolute lg:bottom-0 left-0 right-0 z-[2] mt-8 lg:mt-0">
         <div className="container-wide">
           <div
             className="grid grid-cols-2 lg:grid-cols-4"

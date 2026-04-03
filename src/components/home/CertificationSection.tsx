@@ -4,7 +4,7 @@ export function CertificationSection() {
       id="certification"
       className="py-[120px] relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, hsl(215, 60%, 26%) 0%, hsl(216, 66%, 19%) 100%)",
+        background: "linear-gradient(135deg, hsl(238, 70%, 26%) 0%, hsl(238, 75%, 18%) 100%)",
       }}
     >
       {/* Watermark */}
@@ -65,7 +65,7 @@ export function CertificationSection() {
           <div>
             <span className="eyebrow !text-accent mb-4 block">La certification</span>
             <h2 className="text-white text-[clamp(2rem,4vw,3.2rem)] font-semibold mb-5">
-              Une certification qui<br />change tout pour les IFI.
+              Une certification qui<br />change tout pour les IFI
             </h2>
             <p className="text-white/65 mb-10 text-[1.05rem] leading-[1.75]">
               Les institutions financières refusent des reprises faute de dossiers solides. La

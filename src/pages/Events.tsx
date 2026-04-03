@@ -116,7 +116,7 @@ const Events = () => {
     <Layout>
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16">
+        <section className="bg-primary text-white pt-28 pb-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {language === 'fr' ? 'Événements & Campagnes' : 'Events & Campaigns'}

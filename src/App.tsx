@@ -31,6 +31,7 @@ import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 import TrainingDocuments from "./pages/TrainingDocuments";
 import BusinessListings from "./pages/BusinessListings";
+import DevenirMembre from "./pages/DevenirMembre";
 
 const queryClient = new QueryClient();
 
@@ -42,7 +43,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename="/website_a04bcb0c/">
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
@@ -67,6 +68,7 @@ const App = () => (
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/training" element={<TrainingDocuments />} />
               <Route path="/businesses" element={<BusinessListings />} />
+              <Route path="/devenir-membre" element={<DevenirMembre />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

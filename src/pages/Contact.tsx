@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
+import { Phone, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -45,12 +45,6 @@ const Contact = () => {
   });
 
   const contactInfo = [
-    {
-      icon: Mail,
-      label: t.contact.email,
-      value: "info@niyafondation.com",
-      href: "mailto:info@niyafondation.com",
-    },
     {
       icon: Phone,
       label: t.contact.phone,

@@ -48,7 +48,7 @@ export function AudienceSection() {
         <div className="mb-16">
           <span className="eyebrow mb-4 block">À qui s'adresse NIYA ?</span>
           <h2 className="text-primary text-[clamp(2rem,4vw,3.2rem)] font-semibold">
-            Trois interlocuteurs.<br />Une plateforme
+            Trois interlocuteurs<br />Une plateforme
           </h2>
         </div>
 

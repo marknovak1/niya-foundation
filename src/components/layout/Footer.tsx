@@ -127,7 +127,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-white/[0.08] mb-12">
           <div>
             <h4 className="font-serif text-xl font-bold text-white mb-1">Infolettre NIYA</h4>
-            <p className="text-sm text-white/50">Recevez nos actualités et opportunités directement.</p>
+            <p className="text-sm text-white/50">Restez à l'affût de toutes nos actualités et opportunités</p>
           </div>
           <div className="w-full md:w-auto md:min-w-[340px]">
             <FooterNewsletter />
@@ -142,7 +142,6 @@ export function Footer() {
                Organisation à but non lucratif dédiée à l'autonomie économique des femmes par le repreneuriat et la mobilité économique au Canada.
             </p>
             <div className="text-[0.85rem] text-white space-y-1.5">
-              <div>📧 <a href="mailto:info@niyafondation.ca" className="text-white hover:text-white/80 no-underline transition-colors">info@niyafondation.ca</a></div>
               <div>📍 Québec, Canada</div>
             </div>
           </div>
