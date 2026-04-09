@@ -23,15 +23,27 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const benefits = [
-  "Rejoignez gratuitement notre programme en ligne de planification d'entreprise « Blueprint for Success ».",
-  "Ajoutez votre profil à notre annuaire d'entreprises (réservé aux entreprises détenues par des femmes).",
-  "Rejoignez notre groupe Facebook réservé aux membres du Centre pour les femmes en affaires.",
-  "Partagez vos actualités et événements via notre site web, nos plateformes de médias sociaux et nos newsletters mensuelles (audience combinée de plus de 22 000 personnes).",
-  "Bénéficiez de tarifs préférentiels et/ou d'une notification anticipée pour les événements et les formations, y compris les programmes de formation certifiante gratuits.",
-  "Soumettez une proposition pour devenir un leader du Power Lunch.",
-  "Opportunités de visibilité sur nos canaux de communication et dans les publications d'actualité externes (nous recevons souvent des demandes des médias et nous les renvoyons vers nos membres).",
-  "Tarifs et réductions exclusifs avec AVIS et Budget, les services de conférence de l'Université Mount Saint Vincent, FlagShip et Staples (20 % de réduction sur toutes les photocopies et impressions partout au Canada) – Demandez-nous les codes de réduction.",
+const cards = [
+  {
+    title: "Formations et ateliers",
+    description: "Des contenus concrets pour développer tes compétences, structurer tes projets et prendre des décisions éclairées.",
+  },
+  {
+    title: "Mentorat et accompagnement",
+    description: "Être guidée, poser tes questions, briser l'isolement entrepreneurial et avancer avec plus de clarté.",
+  },
+  {
+    title: "Communauté engagée",
+    description: "Un réseau de femmes ambitieuses, bienveillantes et alignées, avec qui échanger, collaborer et grandir.",
+  },
+  {
+    title: "Annuaire d'entreprises féminines",
+    description: "Gagne en visibilité en intégrant notre répertoire et découvre d'autres entreprises dirigées par des femmes.",
+  },
+  {
+    title: "Opportunités de collaboration et de rayonnement",
+    description: "Partage tes projets, événements et initiatives à travers nos plateformes.",
+  },
 ];
 
 const DevenirMembre = () => {
@@ -88,7 +100,7 @@ const DevenirMembre = () => {
             Devenir membre
           </h1>
           <p className="text-white/70 text-[1.1rem] max-w-[560px] leading-[1.75]">
-            Rejoignez la communauté NIYA et contribuez à façonner l'avenir de l'entrepreneuriat féminin au Canada.
+            Rejoindre NIYA, c'est bien plus qu'une adhésion.
           </p>
         </div>
       </section>
@@ -100,39 +112,63 @@ const DevenirMembre = () => {
 
             {/* Left — text content */}
             <div>
-              <h2 className="text-primary text-[1.7rem] font-semibold mb-5 leading-[1.2]">
-                Contribuez à façonner l'avenir de CWB
+              <h2 className="text-primary text-[1.4rem] font-semibold mb-3 leading-[1.2]">
+                Un espace fait pour toi
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-[1.75] text-[1rem]">
+              <div className="space-y-4 text-muted-foreground leading-[1.75] text-[1rem] mb-10">
                 <p>
-                  Que vous soyez déjà membre ou que vous envisagiez de nous rejoindre, votre avis nous intéresse.
-                  Nous invitons les membres de la communauté à participer à des groupes de discussion et à des sondages
-                  afin de nous aider à définir les prochaines étapes.
+                  C'est entrer dans un espace pensé par et pour les femmes qui bâtissent, reprennent, évoluent.
+                  Que tu sois entrepreneure, travailleuse qualifiée ou en transition vers le repreneuriat,
+                  notre cohorte a été créée pour t'offrir un environnement où tu peux avancer, entourée.
                 </p>
                 <p>
-                  Veuillez remplir le formulaire de manifestation d'intérêt ci-contre.
-                </p>
-                <p>
-                  Merci de faire partie de la communauté CWB et de votre soutien continu dans notre évolution.
-                  Nous vous tiendrons informés des prochaines étapes et avons hâte de vous présenter prochainement
-                  notre nouvelle vision.
+                  Nous sommes encore au début de cette aventure — et c'est justement ce qui la rend précieuse.
+                  En devenant membre aujourd'hui, tu participes activement à la construction d'un écosystème
+                  qui nous ressemble.
                 </p>
               </div>
 
-              <div className="mt-10">
-                <h3 className="text-primary text-[1.2rem] font-semibold mb-5">
-                  Avantages de l'adhésion
+              <h2 className="text-primary text-[1.4rem] font-semibold mb-3 leading-[1.2]">
+                Pourquoi nous rejoindre
+              </h2>
+              <p className="text-muted-foreground leading-[1.75] text-[1rem] mb-10">
+                Chez NIYA, on croit à la force du collectif pour accélérer les parcours individuels.
+                Notre approche repose sur trois piliers : transmission, soutien et visibilité.
+              </p>
+
+              <h2 className="text-primary text-[1.4rem] font-semibold mb-5 leading-[1.2]">
+                Ce à quoi tu as accès dès maintenant
+              </h2>
+              <div className="space-y-4 mb-10">
+                {cards.map((card, i) => (
+                  <div key={i} className="flex items-start gap-4 p-4 border border-border rounded-lg bg-card">
+                    <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center">
+                      <Check className="w-3.5 h-3.5 text-secondary" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-foreground text-[0.95rem] mb-1">{card.title}</p>
+                      <p className="text-[0.9rem] text-muted-foreground leading-[1.6]">{card.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <h2 className="text-primary text-[1.4rem] font-semibold mb-3 leading-[1.2]">
+                Une communauté en construction
+              </h2>
+              <p className="text-muted-foreground leading-[1.75] text-[1rem] mb-8">
+                Nous bâtissons NIYA avec intention. De nouveaux avantages, partenariats et opportunités viendront
+                enrichir l'expérience au fil du temps. En rejoignant maintenant, tu fais partie des premières
+                à façonner cette vision avec nous.
+              </p>
+
+              <div className="p-6 rounded-lg bg-primary/5 border border-primary/10">
+                <h3 className="text-primary font-semibold text-[1.1rem] mb-2">
+                  Prête à faire partie du mouvement ?
                 </h3>
-                <ul className="space-y-3">
-                  {benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center">
-                        <Check className="w-3 h-3 text-secondary" />
-                      </span>
-                      <span className="text-[0.92rem] text-muted-foreground leading-[1.6]">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-muted-foreground text-[0.95rem] leading-[1.7]">
+                  Remplis le formulaire de manifestation d'intérêt et rejoins une cohorte de femmes qui avancent, ensemble.
+                </p>
               </div>
             </div>
 
