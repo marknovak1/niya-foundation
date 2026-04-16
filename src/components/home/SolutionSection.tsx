@@ -11,7 +11,7 @@ export function SolutionSection() {
       <div className="container-wide relative z-[1]">
         <span className="eyebrow !text-accent mb-4 block">Notre réponse</span>
         <h2 className="text-white text-[clamp(2rem,4vw,3.2rem)] font-semibold mb-4">
-          Deux axes. Une excellence.
+          Deux axes. Une excellence
         </h2>
         <p className="text-white/65 max-w-[600px] mb-16 text-[1.05rem] leading-[1.75]">
           NIYA a délibérément choisi de concentrer son action sur deux axes complémentaires — et de
