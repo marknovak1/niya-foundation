@@ -68,21 +68,22 @@ export function ProcessusSection() {
       </div>
 
       {/* Video wave transition */}
-      <div className="relative h-[280px] md:h-[360px]">
+      <div className="relative h-[400px]">
         <video
           autoPlay
           loop
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: "brightness(0.45) saturate(0.8) hue-rotate(-10deg)" }}
         >
-          <source src="/videos/ocean-waves.mp4" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/1809702/1809702-hd_1920_1080_25fps.mp4" type="video/mp4" />
         </video>
+        {/* Dark blue overlay */}
+        <div className="absolute inset-0 bg-navy-deep/40 z-[1]" />
         {/* Top gradient fade from white */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent z-[1]" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent z-[2]" />
         {/* Bottom gradient fade to next section */}
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card to-transparent z-[1]" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card to-transparent z-[2]" />
       </div>
     </section>
   );
