@@ -51,7 +51,7 @@ export function ImpactSection() {
         </div>
 
         <div
-          className="mt-10 py-3 px-5 text-muted-foreground text-[0.8rem] italic"
+          className="mt-6 py-1 px-3 text-muted-foreground text-[0.72rem] italic"
           style={{ borderLeft: "3px solid hsl(var(--teal))" }}
         >
           ⚠ Ces projections sont basées sur des données publiques et des hypothèses conservatrices validées. Auditées annuellement par un organisme indépendant.
