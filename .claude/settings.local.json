@@ -3,7 +3,15 @@
     "allow": [
       "mcp__puppeteer__puppeteer_navigate",
       "mcp__puppeteer__puppeteer_evaluate",
-      "mcp__puppeteer__puppeteer_screenshot"
+      "mcp__puppeteer__puppeteer_screenshot",
+      "Bash(grep -v \"className\\\\|style\\\\|import\\\\|//\\\\|^--$\")",
+      "Bash(grep -rn \"\\\\.\\\\s*$\\\\|\\\\.\\\\s*<\\\\/h[123]\\\\|\\\\.\\\\s*<\\\\/span\\\\b\" C:/Niya_Web/niya-foundation-v2/src/ --include=\"*.tsx\")",
+      "Bash(grep -v \"className\\\\|style\\\\|import\\\\|//\\\\|\\\\\\\\.ts\\\\b\\\\|\\\\\\\\.tsx\\\\b\\\\|\\\\\\\\.css\\\\b\\\\|shadow\\\\|border\\\\|gradient\\\\|animation\\\\|transform\\\\|transition\\\\|linear\\\\|hsl\\\\|var\\(--\\\\|opacity\\\\|rounded\\\\|duration\\\\|ease\\\\|scale\\\\|rotate\\\\|translate\\\\|delay\\\\|fill\\\\|stroke\\\\|ring\\\\|outline\\\\|filter\\\\|backdrop\\\\|cursor\\\\|pointer\\\\|whitespace\\\\|overflow\\\\|object\\\\|aspect\\\\|col-\\\\|row-\\\\|place\\\\|self\\\\|content-\\\\|list-\\\\|table\\\\|caption\\\\|align\\\\|normal\\\\|uppercase\\\\|lowercase\\\\|capitalize\\\\|antialiased\\\\|subpixel\\\\|tracking\\\\|leading\\\\|font-\\\\|text-\\\\|bg-\\\\|from-\\\\|to-\\\\|via-\\\\|hover\\\\|focus\\\\|active\\\\|disabled\\\\|group\\\\|peer\\\\|dark\\\\|lg:\\\\|md:\\\\|sm:\\\\|xl:\\\\|2xl:\\\\|flex\\\\|grid\\\\|block\\\\|hidden\\\\|inline\\\\|items\\\\|justify\\\\|gap\\\\|space\\\\|w-\\\\|h-\\\\|max-\\\\|min-\\\\|p-\\\\|px\\\\|py\\\\|pt\\\\|pb\\\\|pl\\\\|pr\\\\|m-\\\\|mx\\\\|my\\\\|mt\\\\|mb\\\\|ml\\\\|mr\\\\|z-\\\\|top\\\\|left\\\\|right\\\\|bottom\\\\|absolute\\\\|relative\\\\|fixed\\\\|sticky\\\\|static\\\\|float\\\\|clear\\\\|visibility\\\\|display\\\\|shrink\\\\|grow\\\\|basis\\\\|order\\\\|break\\\\|select\\\\|appearance\\\\|resize\\\\|snap\\\\|scroll\\\\|touch\\\\|will-change\\\\|motion\\\\|print\\\\|sr-only\\\\|not-sr\\\\|container\\\\|decoration\\\\|underline\\\\|line-through\\\\|no-underline\\\\|overline\\\\|prose\\\\|not-prose\")",
+      "Bash(grep -v \"className\\\\|style\\\\|^--$\")",
+      "Bash(grep -v \"^C:.*:.*:$\")",
+      "Bash(grep -v \"className\\\\|style\\\\|^--$\\\\|import\\\\|//\")",
+      "Bash(git -C \"C:/Niya_Web/niya-foundation-v2\" add -A)",
+      "Bash(git -C \"C:/Niya_Web/niya-foundation-v2\" commit -m \"fix: replace Handshake with Users icon for Les cédants card\")"
     ]
   }
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserCheck, Handshake, Landmark } from "lucide-react";
+import { UserCheck, Users, Landmark } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export function AudienceSection() {
@@ -17,7 +17,7 @@ export function AudienceSection() {
       cta: "Rejoindre une cohorte →",
     },
     {
-      icon: Handshake,
+      icon: Users,
       title: "Les cédants",
       desc: "Entrepreneurs en fin de carrière qui veulent vendre à quelqu'un de préparé et qui protège leur héritage.",
       list: [
