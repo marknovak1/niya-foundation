@@ -148,7 +148,7 @@ export function Footer() {
 
           {/* Organisation */}
           <div>
-            <h5 className="font-sans text-[0.7rem] font-bold tracking-[2px] uppercase text-accent mb-5">Organisation</h5>
+            <h5 className="font-sans text-[0.7rem] font-bold tracking-[2px] uppercase text-white mb-5">Organisation</h5>
             <ul className="list-none space-y-2.5">
               {orgLinks.map((link) => (
                 <li key={link.name}>
@@ -166,7 +166,7 @@ export function Footer() {
 
           {/* Rejoindre NIYA */}
           <div>
-            <h5 className="font-sans text-[0.7rem] font-bold tracking-[2px] uppercase text-accent mb-5">Rejoindre NIYA</h5>
+            <h5 className="font-sans text-[0.7rem] font-bold tracking-[2px] uppercase text-white mb-5">Rejoindre NIYA</h5>
             <ul className="list-none space-y-2.5">
               {joinLinks.map((link) => (
                 <li key={link.name}>
@@ -184,7 +184,7 @@ export function Footer() {
 
           {/* Légal */}
           <div>
-            <h5 className="font-sans text-[0.7rem] font-bold tracking-[2px] uppercase text-accent mb-5">Légal</h5>
+            <h5 className="font-sans text-[0.7rem] font-bold tracking-[2px] uppercase text-white mb-5">Légal</h5>
             <ul className="list-none space-y-2.5">
               {legalLinks.map((link) => (
                 <li key={link.name}>
