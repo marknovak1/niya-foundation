@@ -139,7 +139,7 @@ export function Footer() {
           <div className="space-y-4">
             <img src={logoWhite} alt="Fondation NIYA" className="h-14 object-contain" />
             <p className="text-sm text-white leading-relaxed max-w-[280px]">
-               Organisation à but non lucratif dédiée à l'autonomie économique des femmes par le repreneuriat et la mobilité économique au Canada.
+               Nous sommes une organisation à but non lucratif dédiée à l'autonomie économique des femmes par le repreneuriat et la mobilité économique au Canada.
             </p>
             <div className="text-[0.85rem] text-white space-y-1.5">
               <div>📍 Québec, Canada</div>
