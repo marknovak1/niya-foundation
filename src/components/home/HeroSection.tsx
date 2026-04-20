@@ -4,7 +4,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen relative flex flex-col justify-center overflow-hidden"
+      className="min-h-screen relative flex flex-col justify-center overflow-visible"
       style={{ paddingTop: "72px" }}
     >
       {/* Background Image */}
@@ -56,14 +56,14 @@ export function HeroSection() {
       </div>
 
       {/* Hero Stats — overlaps hero and white section below */}
-      <div className="relative lg:absolute lg:bottom-0 left-0 right-0 z-[2] mt-8 lg:mt-0">
+      <div className="relative lg:absolute lg:bottom-0 left-0 right-0 z-[2] mt-8 lg:mt-0 lg:translate-y-1/2">
         <div className="container-wide">
           <div
             className="grid grid-cols-2 lg:grid-cols-4"
             style={{
               gap: "1px",
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              background: "#141772",
+              border: "1px solid rgba(255,255,255,0.12)",
             }}
           >
             {[
@@ -76,8 +76,7 @@ export function HeroSection() {
                 key={stat.num}
                 className="px-8 py-7"
                 style={{
-                  background: "rgba(255,255,255,0.03)",
-                  backdropFilter: "blur(8px)",
+                  background: "#141772",
                 }}
               >
                 <div className="font-serif text-[2.4rem] font-bold text-gold-light leading-none mb-1.5">
