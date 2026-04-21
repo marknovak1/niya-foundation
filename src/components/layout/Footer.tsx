@@ -143,9 +143,6 @@ export function Footer() {
             <p className="text-sm text-white leading-relaxed max-w-[280px]">
                Nous sommes une organisation à but non lucratif dédiée à l'autonomie économique des femmes par le repreneuriat et la mobilité économique au Canada.
             </p>
-            <div className="text-[0.85rem] text-white space-y-1.5">
-              <div>📍 Québec, Canada</div>
-            </div>
           </div>
 
           {/* Organisation */}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { LogIn } from "lucide-react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -24,13 +26,20 @@ export function Header() {
     { name: "Entreprises", href: "/businesses", isRoute: true },
   ];
 
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
     if (href.startsWith("/#")) {
       const id = href.replace("/#", "");
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+      if (location.pathname === "/") {
+        scrollToId(id);
+      } else {
+        navigate("/");
+        setTimeout(() => scrollToId(id), 300);
       }
     }
   };
