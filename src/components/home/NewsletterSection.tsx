@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, CheckCircle, Loader2 } from "lucide-react";
-import { submitFormWithRateLimit } from "@/hooks/useRateLimitedSubmit";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/i18n";
 import { newsletterSchema, validateForm } from "@/lib/formValidation";
@@ -74,42 +73,40 @@ export function NewsletterSection() {
     
     setIsSubmitting(true);
     
-    const result = await submitFormWithRateLimit('newsletter', {
-      email,
-      name: name || null,
-      subscriber_type: subscriberType,
-      interests: interests,
-    }, email);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "7b4d08ef-a2e0-4be6-8f70-3973e72d4e66",
+          email,
+        }),
+      });
+      const result = await response.json();
 
-    if (result.success) {
-      setIsSubmitted(true);
-      toast({
-        title: t.newsletter.success.title,
-        description: t.newsletter.success.description,
-      });
-      setEmail("");
-      setName("");
-    } else if (result.isDuplicate) {
-      toast({
-        title: t.newsletter.duplicate.title,
-        description: t.newsletter.duplicate.description,
-      });
-      setEmail("");
-      setName("");
-    } else if (result.isRateLimited) {
-      toast({
-        title: t.newsletter.rateLimited?.title || "Too many requests",
-        description: t.newsletter.rateLimited?.description || "Please wait before subscribing again.",
-        variant: "destructive",
-      });
-    } else {
+      if (result.success) {
+        setIsSubmitted(true);
+        toast({
+          title: t.newsletter.success.title,
+          description: t.newsletter.success.description,
+        });
+        setEmail("");
+        setName("");
+      } else {
+        toast({
+          title: t.newsletter.error.title,
+          description: t.newsletter.error.description,
+          variant: "destructive",
+        });
+      }
+    } catch {
       toast({
         title: t.newsletter.error.title,
         description: t.newsletter.error.description,
         variant: "destructive",
       });
     }
-    
+
     setIsSubmitting(false);
   };
 

@@ -12,7 +12,10 @@
       "Bash(grep -v \"className\\\\|style\\\\|^--$\\\\|import\\\\|//\")",
       "Bash(git -C \"C:/Niya_Web/niya-foundation-v2\" add -A)",
       "Bash(git -C \"C:/Niya_Web/niya-foundation-v2\" commit -m \"fix: replace Handshake with Users icon for Les cédants card\")",
-      "Bash(git -C \"C:/Niya_Web/niya-foundation-v2\" commit -m \"fix: update footer description text\")"
+      "Bash(git -C \"C:/Niya_Web/niya-foundation-v2\" commit -m \"fix: update footer description text\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }

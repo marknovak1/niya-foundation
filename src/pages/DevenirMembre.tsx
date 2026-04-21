@@ -8,7 +8,6 @@ import { CheckCircle, AlertCircle, Check } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { submitFormWithRateLimit } from "@/hooks/useRateLimitedSubmit";
 import { useToast } from "@/hooks/use-toast";
 
 const schema = z.object({
@@ -61,25 +60,33 @@ const DevenirMembre = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-    const result = await submitFormWithRateLimit('membership', {
-      first_name: data.firstName,
-      last_name: data.lastName,
-      email: data.email,
-      phone: data.phone || null,
-      organization: data.organization || null,
-      message: data.message || null,
-    }, data.email);
-
-    if (result.success) {
-      setIsSubmitted(true);
-      reset();
-    } else if (result.isRateLimited) {
-      toast({
-        title: "Trop de demandes",
-        description: "Veuillez patienter avant de soumettre à nouveau.",
-        variant: "destructive",
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "7b4d08ef-a2e0-4be6-8f70-3973e72d4e66",
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone || "",
+          organization: data.organization || "",
+          message: data.message || "",
+        }),
       });
-    } else {
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        reset();
+      } else {
+        toast({
+          title: "Une erreur est survenue",
+          description: "Veuillez réessayer plus tard.",
+          variant: "destructive",
+        });
+      }
+    } catch {
       toast({
         title: "Une erreur est survenue",
         description: "Veuillez réessayer plus tard.",

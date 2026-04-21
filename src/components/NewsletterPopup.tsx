@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { X, Mail, Loader2, CheckCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { submitFormWithRateLimit } from "@/hooks/useRateLimitedSubmit";
 import { useToast } from "@/hooks/use-toast";
 import { newsletterSchema, validateForm } from "@/lib/formValidation";
 
@@ -51,27 +50,25 @@ export function NewsletterPopup() {
 
     setIsSubmitting(true);
 
-    const result = await submitFormWithRateLimit(
-      "newsletter",
-      {
-        email,
-        name: name || null,
-        subscriber_type: "general",
-        interests: ["All Programs"],
-      },
-      email
-    );
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "7b4d08ef-a2e0-4be6-8f70-3973e72d4e66",
+          email,
+        }),
+      });
+      const result = await response.json();
 
-    if (result.success) {
-      setIsSubmitted(true);
-      toast({ title: "Merci !", description: "Vous êtes inscrit(e) à notre infolettre." });
-      setTimeout(dismiss, 3000);
-    } else if (result.isDuplicate) {
-      toast({ title: "Déjà inscrit(e)", description: "Cette adresse est déjà abonnée." });
-      setTimeout(dismiss, 2000);
-    } else if (result.isRateLimited) {
-      toast({ title: "Trop de requêtes", description: "Veuillez réessayer plus tard.", variant: "destructive" });
-    } else {
+      if (result.success) {
+        setIsSubmitted(true);
+        toast({ title: "Merci !", description: "Vous êtes inscrit(e) à notre infolettre." });
+        setTimeout(dismiss, 3000);
+      } else {
+        toast({ title: "Erreur", description: "Une erreur est survenue. Réessayez.", variant: "destructive" });
+      }
+    } catch {
       toast({ title: "Erreur", description: "Une erreur est survenue. Réessayez.", variant: "destructive" });
     }
 

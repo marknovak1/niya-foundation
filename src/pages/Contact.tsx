@@ -9,7 +9,6 @@ import { Phone, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { submitFormWithRateLimit } from "@/hooks/useRateLimitedSubmit";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/i18n";
 
@@ -77,30 +76,43 @@ const Contact = () => {
   ];
 
   const onSubmit = async (data: ContactFormData) => {
-    const result = await submitFormWithRateLimit('contact', {
-      name: data.name,
-      email: data.email,
-      phone: data.phone || null,
-      inquiry_type: data.inquiryType,
-      subject: data.subject,
-      message: data.message,
-      newsletter_optin: data.newsletter || false,
-    }, data.email);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "7b4d08ef-a2e0-4be6-8f70-3973e72d4e66",
+          name: data.name,
+          email: data.email,
+          phone: data.phone || "",
+          inquiry_type: data.inquiryType,
+          subject: data.subject,
+          message: data.message,
+          newsletter_optin: data.newsletter || false,
+        }),
+      });
 
-    if (result.success) {
-      setIsSubmitted(true);
-      reset();
-      toast({
-        title: t.contact.success.title,
-        description: t.contact.success.description,
-      });
-    } else if (result.isRateLimited) {
-      toast({
-        title: t.contact.rateLimited?.title || "Too many requests",
-        description: t.contact.rateLimited?.description || "Please wait before submitting again.",
-        variant: "destructive",
-      });
-    } else {
+      const result = await response.json();
+
+      if (!result.success) {
+        console.log("Web3Forms failure — status:", response.status, "body:", result);
+      }
+
+      if (result.success) {
+        setIsSubmitted(true);
+        reset();
+        toast({
+          title: t.contact.success.title,
+          description: t.contact.success.description,
+        });
+      } else {
+        toast({
+          title: t.contact.error.title,
+          description: t.contact.error.description,
+          variant: "destructive",
+        });
+      }
+    } catch {
       toast({
         title: t.contact.error.title,
         description: t.contact.error.description,

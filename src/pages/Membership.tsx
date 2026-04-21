@@ -8,7 +8,6 @@ import {
   Users, Heart, CheckCircle, User, Building2, 
   ArrowRight, Mail, Phone, MapPin, Loader2 
 } from "lucide-react";
-import { submitFormWithRateLimit } from "@/hooks/useRateLimitedSubmit";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/i18n";
 import { membershipSchema, validateForm } from "@/lib/formValidation";
@@ -103,42 +102,51 @@ const Membership = () => {
     
     setIsSubmitting(true);
     
-    const result = await submitFormWithRateLimit('membership', {
-      membership_tier: selectedTier,
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-      email: formData.email,
-      phone: formData.phone || null,
-      address: formData.address || null,
-      city: formData.city || null,
-      country: formData.country || null,
-      postal_code: formData.postalCode || null,
-      organization: formData.organization || null,
-      how_heard: formData.howHeard || null,
-      interests: formData.interests,
-      newsletter_optin: formData.newsletter,
-    }, formData.email);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "7b4d08ef-a2e0-4be6-8f70-3973e72d4e66",
+          membership_tier: selectedTier,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone || "",
+          address: formData.address || "",
+          city: formData.city || "",
+          country: formData.country || "",
+          postal_code: formData.postalCode || "",
+          organization: formData.organization || "",
+          how_heard: formData.howHeard || "",
+          interests: formData.interests.join(", "),
+          newsletter_optin: formData.newsletter,
+        }),
+      });
 
-    if (result.success) {
-      setIsSubmitted(true);
-      toast({
-        title: t.membership.success.title,
-        description: t.membership.success.description,
-      });
-    } else if (result.isRateLimited) {
-      toast({
-        title: t.membership.rateLimited?.title || "Too many requests",
-        description: t.membership.rateLimited?.description || "Please wait before registering again.",
-        variant: "destructive",
-      });
-    } else {
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        toast({
+          title: t.membership.success.title,
+          description: t.membership.success.description,
+        });
+      } else {
+        toast({
+          title: t.membership.error.title,
+          description: t.membership.error.description,
+          variant: "destructive",
+        });
+      }
+    } catch {
       toast({
         title: t.membership.error.title,
         description: t.membership.error.description,
         variant: "destructive",
       });
     }
-    
+
     setIsSubmitting(false);
   };
 
