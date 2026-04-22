@@ -4,12 +4,14 @@ import { LogIn } from "lucide-react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/i18n";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -159,6 +161,32 @@ export function Header() {
             >
               Devenir membre
             </Link>
+            <div className="mt-3 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setLanguage("fr")}
+                className={cn(
+                  "flex-1 rounded-md border px-3 py-2 text-sm font-semibold transition-colors",
+                  language === "fr"
+                    ? "bg-primary text-white border-primary"
+                    : "bg-background text-foreground/70 border-border hover:bg-muted"
+                )}
+              >
+                Francais
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage("en")}
+                className={cn(
+                  "flex-1 rounded-md border px-3 py-2 text-sm font-semibold transition-colors",
+                  language === "en"
+                    ? "bg-primary text-white border-primary"
+                    : "bg-background text-foreground/70 border-border hover:bg-muted"
+                )}
+              >
+                English
+              </button>
+            </div>
           </div>
         </div>
       )}
