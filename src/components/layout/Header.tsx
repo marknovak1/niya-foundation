@@ -51,14 +51,14 @@ export function Header() {
       )}
       style={{ borderBottom: scrolled ? undefined : "1px solid hsl(220, 13%, 91%)" }}
     >
-      <nav className="container-wide flex h-[72px] items-center justify-between">
+      <nav className="container-wide flex h-[72px] items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center flex-shrink-0">
           <Logo size="md" variant="dark" />
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex items-center gap-9 list-none">
+        <ul className="hidden lg:flex items-center gap-9 list-none mx-auto">
           {navLinks.map((item) => (
             <li key={item.href}>
               {item.isRoute ? (
