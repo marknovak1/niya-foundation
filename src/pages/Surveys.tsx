@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  ClipboardList, CheckCircle, MessageSquare, BarChart3, 
-  Users, ArrowRight, Star, Loader2 
+import {
+  ClipboardList, CheckCircle, MessageSquare, BarChart3,
+  Users, ArrowRight, Star, Loader2
 } from "lucide-react";
 import { submitFormWithRateLimit } from "@/hooks/useRateLimitedSubmit";
 import { useToast } from "@/hooks/use-toast";
@@ -31,59 +31,59 @@ interface SurveyConfig {
 const surveys: SurveyConfig[] = [
   {
     id: "needs",
-    title: "Community Needs Assessment",
-    description: "Help us understand the needs of your community to better direct our resources.",
+    title: "Évaluation des besoins communautaires",
+    description: "Aidez-nous à comprendre les besoins de votre communauté pour mieux orienter nos ressources.",
     icon: Users,
     questions: [
-      { id: "community", question: "Which community or region do you represent?", type: "text", required: true },
-      { id: "primaryNeed", question: "What is the most pressing need in your community?", type: "radio", options: ["Education", "Healthcare", "Economic Opportunities", "Clean Water/Sanitation", "Food Security", "Housing", "Other"], required: true },
-      { id: "affectedPopulation", question: "Who is most affected by this need?", type: "checkbox", options: ["Children", "Youth", "Women", "Elderly", "Disabled", "Entire Community"] },
-      { id: "currentSupport", question: "What support currently exists for this issue?", type: "textarea" },
-      { id: "proposedSolution", question: "What solution do you think would be most effective?", type: "textarea", required: true },
-      { id: "urgency", question: "How urgent is this need?", type: "rating", required: true },
+      { id: "community", question: "Quelle communauté ou région représentez-vous ?", type: "text", required: true },
+      { id: "primaryNeed", question: "Quel est le besoin le plus pressant dans votre communauté ?", type: "radio", options: ["Éducation", "Santé", "Opportunités économiques", "Eau potable / Assainissement", "Sécurité alimentaire", "Logement", "Autre"], required: true },
+      { id: "affectedPopulation", question: "Qui est le plus touché par ce besoin ?", type: "checkbox", options: ["Enfants", "Jeunes", "Femmes", "Personnes âgées", "Personnes handicapées", "Toute la communauté"] },
+      { id: "currentSupport", question: "Quel soutien existe actuellement pour ce problème ?", type: "textarea" },
+      { id: "proposedSolution", question: "Quelle solution vous semble la plus efficace ?", type: "textarea", required: true },
+      { id: "urgency", question: "À quel point ce besoin est-il urgent ?", type: "rating", required: true },
     ],
   },
   {
     id: "satisfaction",
-    title: "Program Satisfaction Survey",
-    description: "Share your experience with our programs to help us improve.",
+    title: "Enquête de satisfaction des programmes",
+    description: "Partagez votre expérience avec nos programmes pour nous aider à nous améliorer.",
     icon: MessageSquare,
     questions: [
-      { id: "program", question: "Which program did you participate in?", type: "radio", options: ["Education Initiative", "Health & Wellness", "Economic Empowerment", "Environmental Sustainability", "Community Development"], required: true },
-      { id: "overallSatisfaction", question: "How satisfied are you with the program overall?", type: "rating", required: true },
-      { id: "expectations", question: "Did the program meet your expectations?", type: "radio", options: ["Exceeded expectations", "Met expectations", "Partially met expectations", "Did not meet expectations"], required: true },
-      { id: "mostValuable", question: "What was the most valuable aspect of the program?", type: "textarea" },
-      { id: "improvements", question: "What improvements would you suggest?", type: "textarea" },
-      { id: "recommend", question: "Would you recommend this program to others?", type: "radio", options: ["Definitely yes", "Probably yes", "Not sure", "Probably not", "Definitely not"], required: true },
+      { id: "program", question: "À quel programme avez-vous participé ?", type: "radio", options: ["Initiative éducative", "Santé et bien-être", "Autonomisation économique", "Durabilité environnementale", "Développement communautaire"], required: true },
+      { id: "overallSatisfaction", question: "Dans quelle mesure êtes-vous satisfait(e) du programme dans l'ensemble ?", type: "rating", required: true },
+      { id: "expectations", question: "Le programme a-t-il répondu à vos attentes ?", type: "radio", options: ["A dépassé les attentes", "A répondu aux attentes", "A partiellement répondu aux attentes", "N'a pas répondu aux attentes"], required: true },
+      { id: "mostValuable", question: "Quel a été l'aspect le plus précieux du programme ?", type: "textarea" },
+      { id: "improvements", question: "Quelles améliorations suggéreriez-vous ?", type: "textarea" },
+      { id: "recommend", question: "Recommanderiez-vous ce programme à d'autres personnes ?", type: "radio", options: ["Certainement oui", "Probablement oui", "Je ne sais pas", "Probablement non", "Certainement non"], required: true },
     ],
   },
   {
     id: "impact",
-    title: "Impact Measurement Survey",
-    description: "Help us measure the lasting impact of our programs in your life.",
+    title: "Enquête sur la mesure de l'impact",
+    description: "Aidez-nous à mesurer l'impact durable de nos programmes dans votre vie.",
     icon: BarChart3,
     questions: [
-      { id: "programParticipated", question: "Which program(s) have you benefited from?", type: "checkbox", options: ["Education Initiative", "Health & Wellness", "Economic Empowerment", "Environmental Sustainability", "Community Development"] },
-      { id: "lifeChange", question: "How has the program changed your life?", type: "textarea", required: true },
-      { id: "skillsGained", question: "What new skills or knowledge have you gained?", type: "textarea" },
-      { id: "incomeChange", question: "If applicable, has your income situation improved?", type: "radio", options: ["Significantly improved", "Somewhat improved", "No change", "Not applicable"] },
-      { id: "healthChange", question: "If applicable, has your health situation improved?", type: "radio", options: ["Significantly improved", "Somewhat improved", "No change", "Not applicable"] },
-      { id: "overallImpact", question: "Rate the overall impact on your quality of life", type: "rating", required: true },
-      { id: "testimonial", question: "Would you like to share a testimonial? (May be used with your permission)", type: "textarea" },
+      { id: "programParticipated", question: "De quel(s) programme(s) avez-vous bénéficié ?", type: "checkbox", options: ["Initiative éducative", "Santé et bien-être", "Autonomisation économique", "Durabilité environnementale", "Développement communautaire"] },
+      { id: "lifeChange", question: "Comment le programme a-t-il changé votre vie ?", type: "textarea", required: true },
+      { id: "skillsGained", question: "Quelles nouvelles compétences ou connaissances avez-vous acquises ?", type: "textarea" },
+      { id: "incomeChange", question: "Le cas échéant, votre situation financière s'est-elle améliorée ?", type: "radio", options: ["Nettement améliorée", "Légèrement améliorée", "Aucun changement", "Non applicable"] },
+      { id: "healthChange", question: "Le cas échéant, votre état de santé s'est-il amélioré ?", type: "radio", options: ["Nettement amélioré", "Légèrement amélioré", "Aucun changement", "Non applicable"] },
+      { id: "overallImpact", question: "Évaluez l'impact global sur votre qualité de vie", type: "rating", required: true },
+      { id: "testimonial", question: "Souhaitez-vous partager un témoignage ? (Utilisé avec votre permission)", type: "textarea" },
     ],
   },
   {
     id: "volunteer",
-    title: "Volunteer Interest Form",
-    description: "Tell us about your skills and availability to volunteer with us.",
+    title: "Formulaire d'intérêt bénévole",
+    description: "Parlez-nous de vos compétences et de vos disponibilités pour vous engager avec nous.",
     icon: ClipboardList,
     questions: [
-      { id: "skills", question: "What skills can you offer?", type: "checkbox", options: ["Teaching/Tutoring", "Healthcare", "Business/Finance", "Technology", "Construction", "Agriculture", "Communications/Marketing", "Legal", "Other"] },
-      { id: "availability", question: "What is your availability?", type: "radio", options: ["Full-time (40+ hrs/week)", "Part-time (20-40 hrs/week)", "Occasional (5-20 hrs/week)", "Weekends only", "Remote only"], required: true },
-      { id: "location", question: "Are you willing to travel or relocate?", type: "radio", options: ["Yes, internationally", "Yes, domestically", "Local only", "Remote only"], required: true },
-      { id: "experience", question: "Describe any relevant volunteer or professional experience", type: "textarea" },
-      { id: "motivation", question: "What motivates you to volunteer with NIYA Foundation?", type: "textarea", required: true },
-      { id: "commitment", question: "How long can you commit to volunteering?", type: "radio", options: ["1-3 months", "3-6 months", "6-12 months", "1+ years", "Flexible"], required: true },
+      { id: "skills", question: "Quelles compétences pouvez-vous offrir ?", type: "checkbox", options: ["Enseignement / Tutorat", "Santé", "Commerce / Finance", "Technologie", "Construction", "Agriculture", "Communication / Marketing", "Juridique", "Autre"] },
+      { id: "availability", question: "Quelle est votre disponibilité ?", type: "radio", options: ["Temps plein (40h+ / semaine)", "Mi-temps (20-40h / semaine)", "Occasionnel (5-20h / semaine)", "Weekends uniquement", "À distance uniquement"], required: true },
+      { id: "location", question: "Êtes-vous prêt(e) à voyager ou à vous déplacer ?", type: "radio", options: ["Oui, à l'international", "Oui, au niveau national", "Local uniquement", "À distance uniquement"], required: true },
+      { id: "experience", question: "Décrivez toute expérience bénévole ou professionnelle pertinente", type: "textarea" },
+      { id: "motivation", question: "Qu'est-ce qui vous motive à faire du bénévolat pour la Fondation NIYA ?", type: "textarea", required: true },
+      { id: "commitment", question: "Pendant combien de temps pouvez-vous vous engager en tant que bénévole ?", type: "radio", options: ["1 à 3 mois", "3 à 6 mois", "6 à 12 mois", "1 an et plus", "Flexible"], required: true },
     ],
   },
 ];
@@ -102,7 +102,7 @@ const Surveys = () => {
 
   const handleCheckboxChange = (questionId: string, option: string, checked: boolean) => {
     const current = (responses[questionId] as string[]) || [];
-    const updated = checked 
+    const updated = checked
       ? [...current, option]
       : current.filter(o => o !== option);
     handleResponseChange(questionId, updated);
@@ -115,29 +115,28 @@ const Surveys = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setValidationErrors({});
-    
-    // Validate form data
+
     const validation = validateForm(surveySchema, {
       name: contactInfo.name,
       email: contactInfo.email,
       surveyType: selectedSurvey,
       responses: responses,
     });
-    
+
     if (!validation.isValid) {
       setValidationErrors(validation.errors);
       toast({
-        title: "Validation Error",
-        description: "Please fix the validation errors.",
+        title: "Erreur de validation",
+        description: "Veuillez corriger les erreurs de validation.",
         variant: "destructive",
       });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     const identifier = contactInfo.email || `anonymous-${Date.now()}`;
-    
+
     const result = await submitFormWithRateLimit('survey', {
       survey_type: selectedSurvey,
       respondent_name: contactInfo.name || null,
@@ -148,23 +147,23 @@ const Surveys = () => {
     if (result.success) {
       setIsSubmitted(true);
       toast({
-        title: "Survey submitted!",
-        description: "Thank you for your valuable feedback.",
+        title: "Enquête soumise !",
+        description: "Merci pour vos précieux retours.",
       });
     } else if (result.isRateLimited) {
       toast({
-        title: "Too many submissions",
-        description: "Please wait before submitting another survey.",
+        title: "Trop de soumissions",
+        description: "Veuillez patienter avant de soumettre une autre enquête.",
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Error",
-        description: "Failed to submit survey. Please try again.",
+        title: "Erreur",
+        description: "Échec de l'envoi de l'enquête. Veuillez réessayer.",
         variant: "destructive",
       });
     }
-    
+
     setIsSubmitting(false);
   };
 
@@ -188,7 +187,7 @@ const Surveys = () => {
             onChange={(e) => handleResponseChange(question.id, e.target.value)}
             required={question.required}
             className="w-full min-h-[100px] p-3 rounded-md border border-input bg-background text-foreground resize-y"
-            placeholder="Your answer..."
+            placeholder="Votre réponse..."
           />
         );
 
@@ -263,21 +262,21 @@ const Surveys = () => {
               <CheckCircle className="h-10 w-10" />
             </div>
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-foreground mb-4">
-              Thank You for Your Feedback!
+              Merci pour vos retours !
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-              Your response has been recorded. Your input is invaluable in helping us 
-              improve our programs and better serve our communities.
+              Votre réponse a bien été enregistrée. Vos contributions sont précieuses pour nous aider
+              à améliorer nos programmes et à mieux servir nos communautés.
             </p>
-            <Button 
-              variant="warm" 
+            <Button
+              variant="warm"
               onClick={() => {
                 setIsSubmitted(false);
                 setSelectedSurvey(null);
                 setResponses({});
               }}
             >
-              Take Another Survey
+              Répondre à une autre enquête
             </Button>
           </div>
         </section>
@@ -292,14 +291,14 @@ const Surveys = () => {
         <div className="container-wide relative z-10">
           <div className="max-w-3xl">
             <span className="inline-block text-sm font-semibold text-secondary uppercase tracking-wider mb-4">
-              Share Your Voice
+              Faites entendre votre voix
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-primary-foreground mb-6">
-              Surveys & Feedback
+              Enquêtes & Retours
             </h1>
             <p className="text-xl text-primary-foreground/80 leading-relaxed">
-              Your feedback helps us improve our programs and better serve communities. 
-              Take a few minutes to share your thoughts and experiences.
+              Vos retours nous aident à améliorer nos programmes et à mieux servir les communautés.
+              Prenez quelques minutes pour partager vos pensées et expériences.
             </p>
           </div>
         </div>
@@ -319,16 +318,16 @@ const Surveys = () => {
             <>
               <div className="text-center max-w-3xl mx-auto mb-12">
                 <h2 className="text-3xl font-serif font-bold text-foreground mb-4">
-                  Select a Survey
+                  Choisissez une enquête
                 </h2>
                 <p className="text-muted-foreground">
-                  Choose the survey that best matches your situation or experience.
+                  Sélectionnez l'enquête qui correspond le mieux à votre situation ou à votre expérience.
                 </p>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {surveys.map((survey) => (
-                  <Card 
+                  <Card
                     key={survey.id}
                     className="cursor-pointer transition-all duration-200 hover:border-secondary hover:shadow-md"
                     onClick={() => setSelectedSurvey(survey.id)}
@@ -358,7 +357,7 @@ const Surveys = () => {
                 onClick={() => setSelectedSurvey(null)}
                 className="mb-6 text-sm text-secondary hover:underline flex items-center gap-1"
               >
-                ← Back to survey selection
+                ← Retour à la sélection des enquêtes
               </button>
 
               <Card>
@@ -374,11 +373,11 @@ const Surveys = () => {
                     {/* Contact Info */}
                     <div className="p-4 rounded-lg bg-muted/50">
                       <h3 className="text-sm font-semibold text-foreground mb-4">
-                        Your Information (Optional)
+                        Vos informations (facultatif)
                       </h3>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="name">Name</Label>
+                          <Label htmlFor="name">Nom</Label>
                           <Input
                             id="name"
                             value={contactInfo.name}
@@ -387,7 +386,7 @@ const Surveys = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="email">Email</Label>
+                          <Label htmlFor="email">E-mail</Label>
                           <Input
                             id="email"
                             type="email"
@@ -413,7 +412,7 @@ const Surveys = () => {
                     {/* Submit */}
                     <div className="pt-4">
                       <Button type="submit" variant="warm" size="lg" className="w-full">
-                        Submit Survey
+                        Soumettre l'enquête
                         <ArrowRight className="h-5 w-5 ml-2" />
                       </Button>
                     </div>
@@ -429,9 +428,9 @@ const Surveys = () => {
       <section className="py-12 bg-muted/50">
         <div className="container-narrow text-center">
           <p className="text-sm text-muted-foreground">
-            Your responses are confidential and will be used to improve our programs. 
-            Data may be aggregated for grant applications and annual reports. 
-            Read our <a href="/privacy" className="text-secondary hover:underline">Privacy Policy</a> for more information.
+            Vos réponses sont confidentielles et seront utilisées pour améliorer nos programmes.
+            Les données peuvent être agrégées pour des demandes de subventions et des rapports annuels.
+            Consultez notre <a href="/privacy" className="text-secondary hover:underline">Politique de confidentialité</a> pour plus d'informations.
           </p>
         </div>
       </section>
