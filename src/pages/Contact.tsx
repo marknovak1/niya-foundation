@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Clock, CheckCircle, AlertCircle } from "lucide-react";
+import { CheckCircle, AlertCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -42,27 +42,6 @@ const Contact = () => {
       consent: false,
     },
   });
-
-  const contactInfo = [
-    {
-      icon: Phone,
-      label: t.contact.phone,
-      value: "+1 (234) 567-890",
-      href: "tel:+1234567890",
-    },
-    {
-      icon: MapPin,
-      label: t.contact.address,
-      value: "123 Foundation Street, City, Country",
-      href: null,
-    },
-    {
-      icon: Clock,
-      label: t.contact.hours,
-      value: t.contact.hoursValue,
-      href: null,
-    },
-  ];
 
   const inquiryTypes = [
     { value: "", label: t.contact.inquiryTypes.select },
@@ -336,31 +315,8 @@ const Contact = () => {
                 {t.contact.infoDesc}
               </p>
 
-              <div className="space-y-6">
-                {contactInfo.map((item) => (
-                  <div key={item.label} className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center flex-shrink-0">
-                      <item.icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">{item.label}</p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="text-foreground font-medium hover:text-secondary transition-colors"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-foreground font-medium">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
               {/* FAQ Teaser */}
-              <div className="mt-12 p-6 rounded-xl bg-muted/50">
+              <div className="p-6 rounded-xl bg-muted/50">
                 <h3 className="font-semibold text-foreground mb-2">{t.contact.faqTitle}</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   {t.contact.faqDesc}
