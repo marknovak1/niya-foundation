@@ -50,14 +50,16 @@ export function Header() {
       )}
       style={{ borderBottom: scrolled ? undefined : "1px solid hsl(220, 13%, 91%)" }}
     >
-      <nav className="container-wide relative flex h-[72px] items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center">
-          <Logo size="md" variant="dark" />
-        </Link>
+      <nav className="container-wide flex h-[72px] items-center">
+        {/* Left — Logo */}
+        <div className="flex-1 flex items-center">
+          <Link to="/" className="flex items-center">
+            <Logo size="md" variant="dark" />
+          </Link>
+        </div>
 
-        {/* Desktop Navigation — centered absolutely */}
-        <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-9 list-none">
+        {/* Center — Nav links */}
+        <ul className="hidden lg:flex items-center gap-9 list-none">
           {navLinks.map((item) => (
             <li key={item.href}>
               {item.isRoute ? (
@@ -83,26 +85,22 @@ export function Header() {
           ))}
         </ul>
 
-        {/* Desktop Actions */}
-        <ul className="hidden lg:flex items-center gap-6 list-none">
-          <li>
-            <Link
-              to="/member/login"
-              className="flex items-center gap-1.5 text-foreground/70 text-sm font-medium tracking-wide hover:text-primary transition-colors no-underline"
-            >
-              <LogIn className="h-4 w-4" />
-              Connexion
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/devenir-membre"
-              className="bg-primary text-white border border-primary px-5 py-2.5 text-sm font-semibold tracking-wide hover:bg-primary/90 transition-colors no-underline"
-            >
-              Devenir membre
-            </Link>
-          </li>
-        </ul>
+        {/* Right — Actions */}
+        <div className="flex-1 hidden lg:flex items-center justify-end gap-6">
+          <Link
+            to="/member/login"
+            className="flex items-center gap-1.5 text-foreground/70 text-sm font-medium tracking-wide hover:text-primary transition-colors no-underline"
+          >
+            <LogIn className="h-4 w-4" />
+            Connexion
+          </Link>
+          <Link
+            to="/devenir-membre"
+            className="bg-primary text-white border border-primary px-5 py-2.5 text-sm font-semibold tracking-wide hover:bg-primary/90 transition-colors no-underline"
+          >
+            Devenir membre
+          </Link>
+        </div>
 
         {/* Mobile menu button */}
         <button
