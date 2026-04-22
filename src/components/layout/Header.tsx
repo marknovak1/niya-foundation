@@ -20,6 +20,7 @@ export function Header() {
   const navLinks = [
     { name: "Notre mission", href: "/#probleme" },
     { name: "Nos axes", href: "/#solution" },
+    { name: "Entreprises", href: "/businesses", isRoute: true },
   ];
 
   const scrollToId = (id: string) => {
