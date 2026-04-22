@@ -20,10 +20,6 @@ export function Header() {
   const navLinks = [
     { name: "Notre mission", href: "/#probleme" },
     { name: "Nos axes", href: "/#solution" },
-    { name: "Actualités", href: "/news", isRoute: true },
-    { name: "Événements", href: "/events", isRoute: true },
-    { name: "Formation", href: "/training", isRoute: true },
-    { name: "Entreprises", href: "/businesses", isRoute: true },
   ];
 
   const scrollToId = (id: string) => {
