@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Cookie, X, Settings2 } from "lucide-react";
 import { useTranslation } from "@/i18n";
 
@@ -21,6 +21,7 @@ export function CookieConsent() {
     marketing: false,
   });
   const { t } = useTranslation();
+  const location = useLocation();
 
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
@@ -51,7 +52,7 @@ export function CookieConsent() {
     savePreferences(preferences);
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || location.pathname === '/qr') return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6">

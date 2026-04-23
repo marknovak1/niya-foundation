@@ -33,6 +33,7 @@ import NotFound from "./pages/NotFound";
 import TrainingDocuments from "./pages/TrainingDocuments";
 import BusinessListings from "./pages/BusinessListings";
 import DevenirMembre from "./pages/DevenirMembre";
+import QRLanding from "./pages/QRLanding";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const App = () => (
               <Route path="/training" element={<TrainingDocuments />} />
               <Route path="/businesses" element={<BusinessListings />} />
               <Route path="/devenir-membre" element={<DevenirMembre />} />
+              <Route path="/qr" element={<QRLanding />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

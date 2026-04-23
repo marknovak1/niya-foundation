@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { X, Mail, Loader2, CheckCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ export function NewsletterPopup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
+  const location = useLocation();
 
   useEffect(() => {
     const dismissed = localStorage.getItem(POPUP_STORAGE_KEY);
@@ -75,7 +77,7 @@ export function NewsletterPopup() {
     setIsSubmitting(false);
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || location.pathname === '/qr') return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
