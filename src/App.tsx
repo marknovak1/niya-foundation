@@ -34,6 +34,7 @@ import TrainingDocuments from "./pages/TrainingDocuments";
 import BusinessListings from "./pages/BusinessListings";
 import DevenirMembre from "./pages/DevenirMembre";
 import QRLanding from "./pages/QRLanding";
+import ResetPassword from "./pages/ResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ const App = () => (
               <Route path="/businesses" element={<BusinessListings />} />
               <Route path="/devenir-membre" element={<DevenirMembre />} />
               <Route path="/qr" element={<QRLanding />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
