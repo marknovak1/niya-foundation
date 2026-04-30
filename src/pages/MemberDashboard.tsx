@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { Loader2, LogOut, User, Calendar, Heart, Mail, ArrowRight, Settings } from "lucide-react";
+import { Loader2, LogOut, User, Calendar, Heart, Mail, ArrowRight, Settings, Building2 } from "lucide-react";
 import { useTranslation } from "@/i18n";
 
 interface MemberProfile {
@@ -219,6 +219,18 @@ const MemberDashboard = () => {
                 <Link to="/contact">
                   <Mail className="h-4 w-4 mr-2" />
                   {t.memberPortal.contactUs}
+                </Link>
+              </Button>
+              <Button variant="outline" className="w-full justify-start" asChild>
+                <Link to="/businesses">
+                  <Building2 className="h-4 w-4 mr-2" />
+                  Entreprises à vendre
+                </Link>
+              </Button>
+              <Button variant="outline" className="w-full justify-start" asChild>
+                <Link to="/member/listings">
+                  <Building2 className="h-4 w-4 mr-2" />
+                  Mes annonces
                 </Link>
               </Button>
             </CardContent>

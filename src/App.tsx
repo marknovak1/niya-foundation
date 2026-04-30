@@ -35,6 +35,9 @@ import BusinessListings from "./pages/BusinessListings";
 import DevenirMembre from "./pages/DevenirMembre";
 import QRLanding from "./pages/QRLanding";
 import ResetPassword from "./pages/ResetPassword";
+import CreateListing from "./pages/CreateListing";
+import MemberListings from "./pages/MemberListings";
+import BusinessListingDetail from "./pages/BusinessListingDetail";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +77,9 @@ const App = () => (
               <Route path="/devenir-membre" element={<DevenirMembre />} />
               <Route path="/qr" element={<QRLanding />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/member/listings" element={<MemberListings />} />
+              <Route path="/member/listings/new" element={<CreateListing />} />
+              <Route path="/businesses/:id" element={<BusinessListingDetail />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
