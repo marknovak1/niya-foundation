@@ -160,7 +160,8 @@ const MemberDashboard = () => {
             </CardContent>
           </Card>
 
-          {/* Membership Status */}
+          {/* Membership Status — hidden for now, revisit later */}
+          {membership && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -169,30 +170,22 @@ const MemberDashboard = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {membership ? (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="default" className="capitalize">
-                      {membership.membership_tier}
-                    </Badge>
-                    <Badge variant={membership.status === "approved" ? "default" : "secondary"}>
-                      {membership.status}
-                    </Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {t.memberPortal.joinedOn}: {new Date(membership.created_at).toLocaleDateString()}
-                  </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <Badge variant="default" className="capitalize">
+                    {membership.membership_tier}
+                  </Badge>
+                  <Badge variant={membership.status === "approved" ? "default" : "secondary"}>
+                    {membership.status}
+                  </Badge>
                 </div>
-              ) : (
-                <div className="text-center py-4">
-                  <p className="text-muted-foreground mb-4">{t.memberPortal.notMemberYet}</p>
-                  <Button asChild>
-                    <Link to="/membership">{t.memberPortal.becomeMember}</Link>
-                  </Button>
-                </div>
-              )}
+                <p className="text-sm text-muted-foreground">
+                  {t.memberPortal.joinedOn}: {new Date(membership.created_at).toLocaleDateString()}
+                </p>
+              </div>
             </CardContent>
           </Card>
+          )}
 
           {/* Quick Actions */}
           <Card>
