@@ -33,6 +33,7 @@ interface Listing {
   views_count: number;
   created_at: string;
   image_url: string | null;
+  rejection_reason: string | null;
   inquiry_count?: number;
 }
 
@@ -178,6 +179,13 @@ const MemberListings = () => {
                             <MessageSquare className="h-3 w-3" /> {listing.inquiry_count} intérêt(s)
                           </span>
                         </div>
+
+                        {/* Rejection reason */}
+                        {listing.status === "rejected" && listing.rejection_reason && (
+                          <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-xs text-red-700">
+                            <strong>Raison du refus :</strong> {listing.rejection_reason}
+                          </div>
+                        )}
                       </div>
 
                       {/* Actions */}
