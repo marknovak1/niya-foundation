@@ -147,6 +147,19 @@ const EditListing = () => {
 
       if (error) throw error;
 
+      // Notify admin of re-submission (fire-and-forget)
+      supabase.functions.invoke("notify-admin", {
+        body: {
+          type: "new_listing",
+          listing_name: form.name,
+          listing_id: id,
+          seller_email: user.email,
+          listing_category: form.category,
+          listing_location: form.location,
+          listing_price: priceNegotiable ? "À discuter" : form.price,
+        },
+      }).catch(() => {});
+
       toast.success("Annonce mise à jour ! Elle sera vérifiée avant republication.");
       navigate("/member/listings");
     } catch (error: any) {

@@ -102,6 +102,17 @@ const BusinessListingDetail = () => {
 
       if (error) throw error;
 
+      // Notify admin of new buyer inquiry (fire-and-forget)
+      supabase.functions.invoke("notify-admin", {
+        body: {
+          type: "new_inquiry",
+          listing_name: listing!.name,
+          listing_id: id,
+          buyer_email: user.email,
+          inquiry_message: message.trim() || null,
+        },
+      }).catch(() => {});
+
       setSubmitted(true);
       setAlreadyInterested(true);
       toast.success("Votre intérêt a été transmis à notre équipe !");

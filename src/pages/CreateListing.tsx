@@ -108,6 +108,19 @@ const CreateListing = () => {
 
       if (error) throw error;
 
+      // Notify admin (fire-and-forget, don't block on failure)
+      supabase.functions.invoke("notify-admin", {
+        body: {
+          type: "new_listing",
+          listing_name: form.name,
+          listing_id: "new",
+          seller_email: user.email,
+          listing_category: form.category,
+          listing_location: form.location,
+          listing_price: priceNegotiable ? "À discuter" : form.price,
+        },
+      }).catch(() => {});
+
       toast.success("Annonce soumise ! Elle sera visible après approbation.");
       navigate("/member/listings");
     } catch (error: any) {
