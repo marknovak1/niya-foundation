@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,6 +17,7 @@ const MemberLogin = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [fullName, setFullName] = useState("");
   const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
@@ -27,7 +29,17 @@ const MemberLogin = () => {
     setIsLoading(true);
 
     try {
-      if (isSignUp) {
+      if (isForgotPassword) {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/member`,
+        });
+        if (error) throw error;
+        toast({
+          title: "Email envoyé",
+          description: "Vérifiez votre boîte mail pour réinitialiser votre mot de passe.",
+        });
+        setIsForgotPassword(false);
+      } else if (isSignUp) {
         const { error } = await signUp(email, password, fullName);
         if (error) throw error;
         toast({
@@ -63,16 +75,24 @@ const MemberLogin = () => {
                   </div>
                 </div>
                 <Logo size="sm" className="mx-auto mb-2" />
-                <CardTitle>{isSignUp ? t.memberPortal.createAccount : t.memberPortal.login}</CardTitle>
+                <CardTitle>
+                  {isForgotPassword
+                    ? "Mot de passe oublié"
+                    : isSignUp
+                    ? t.memberPortal.createAccount
+                    : t.memberPortal.login}
+                </CardTitle>
                 <CardDescription>
-                  {isSignUp
+                  {isForgotPassword
+                    ? "Entrez votre email pour recevoir un lien de réinitialisation."
+                    : isSignUp
                     ? t.memberPortal.createAccountDesc
                     : t.memberPortal.loginDesc}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {isSignUp && (
+                  {isSignUp && !isForgotPassword && (
                     <div className="space-y-2">
                       <Label htmlFor="fullName">{t.memberPortal.fullName}</Label>
                       <Input
@@ -96,31 +116,58 @@ const MemberLogin = () => {
                       placeholder={t.memberPortal.emailPlaceholder}
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="password">{t.memberPortal.password}</Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      minLength={6}
-                      placeholder="••••••••"
-                    />
-                  </div>
+                  {!isForgotPassword && (
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <Label htmlFor="password">{t.memberPortal.password}</Label>
+                        {!isSignUp && (
+                          <button
+                            type="button"
+                            onClick={() => setIsForgotPassword(true)}
+                            className="text-xs text-primary hover:underline"
+                          >
+                            Mot de passe oublié ?
+                          </button>
+                        )}
+                      </div>
+                      <Input
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        minLength={6}
+                        placeholder="••••••••"
+                      />
+                    </div>
+                  )}
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {isSignUp ? t.memberPortal.createAccountBtn : t.memberPortal.loginBtn}
+                    {isForgotPassword
+                      ? "Envoyer le lien"
+                      : isSignUp
+                      ? t.memberPortal.createAccountBtn
+                      : t.memberPortal.loginBtn}
                   </Button>
                 </form>
-                <div className="mt-4 text-center">
-                  <button
-                    type="button"
-                    onClick={() => setIsSignUp(!isSignUp)}
-                    className="text-sm text-primary hover:underline"
-                  >
-                    {isSignUp ? t.memberPortal.haveAccount : t.memberPortal.needAccount}
-                  </button>
+                <div className="mt-4 text-center space-y-2">
+                  {isForgotPassword ? (
+                    <button
+                      type="button"
+                      onClick={() => setIsForgotPassword(false)}
+                      className="text-sm text-primary hover:underline"
+                    >
+                      ← Retour à la connexion
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setIsSignUp(!isSignUp)}
+                      className="text-sm text-primary hover:underline"
+                    >
+                      {isSignUp ? t.memberPortal.haveAccount : t.memberPortal.needAccount}
+                    </button>
+                  )}
                 </div>
                 <div className="mt-6 pt-4 border-t text-center">
                   <p className="text-xs text-muted-foreground mb-2">{t.memberPortal.adminAccess}</p>
