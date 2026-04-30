@@ -209,7 +209,7 @@ const DevenirMembre = () => {
                       <Input
                         id="firstName"
                         {...register("firstName")}
-                        placeholder="Marie"
+                        placeholder="Votre prénom"
                         className={errors.firstName ? "border-destructive" : ""}
                       />
                       {errors.firstName && (
@@ -223,7 +223,7 @@ const DevenirMembre = () => {
                       <Input
                         id="lastName"
                         {...register("lastName")}
-                        placeholder="Tremblay"
+                        placeholder="Votre nom de famille"
                         className={errors.lastName ? "border-destructive" : ""}
                       />
                       {errors.lastName && (
@@ -240,7 +240,7 @@ const DevenirMembre = () => {
                       id="email"
                       type="email"
                       {...register("email")}
-                      placeholder="marie@exemple.com"
+                      placeholder="votre@courriel.com"
                       className={errors.email ? "border-destructive" : ""}
                     />
                     {errors.email && (
@@ -257,7 +257,7 @@ const DevenirMembre = () => {
                         id="phone"
                         type="tel"
                         {...register("phone")}
-                        placeholder="+1 (514) 000-0000"
+                        placeholder="+1 (000) 000-0000"
                       />
                     </div>
                     <div>
