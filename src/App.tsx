@@ -39,6 +39,7 @@ import CreateListing from "./pages/CreateListing";
 import MemberListings from "./pages/MemberListings";
 import BusinessListingDetail from "./pages/BusinessListingDetail";
 import EditListing from "./pages/EditListing";
+import OutilTresorerie from "@/pages/OutilTresorerie";
 
 const queryClient = new QueryClient();
 
@@ -82,6 +83,7 @@ const App = () => (
               <Route path="/member/listings/new" element={<CreateListing />} />
               <Route path="/businesses/:id" element={<BusinessListingDetail />} />
               <Route path="/member/listings/edit/:id" element={<EditListing />} />
+              <Route path="/outils/tresorerie" element={<OutilTresorerie />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

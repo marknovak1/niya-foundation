@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Niya Foundation QR Poster</title>
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #0b1120;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* The Poster Card to be converted into an image */
+        #download-card {
+            background-color: #0b1120;
+            /* Navy deep */
+            padding: 50px 40px;
+            border-radius: 0px;
+            /* Flat edges for a poster print look */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            width: 480px;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 20px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Abstract blurred gradients behind the QR code (inside the card) */
+        .accent-teal {
+            position: absolute;
+            top: 0px;
+            left: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(15, 139, 141, 0.3);
+            filter: blur(60px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .accent-gold {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(197, 168, 128, 0.2);
+            filter: blur(60px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Content inside the poster */
+        .card-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            width: 220px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 28px;
+            text-align: center;
+            color: white;
+            line-height: 1.2;
+        }
+
+        #qr-container {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        /* Download button styling */
+        button {
+            margin-top: 40px;
+            padding: 14px 28px;
+            background: #c5a880;
+            color: #0b1120;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 10px 20px rgba(197, 168, 128, 0.2);
+            transition: all 0.2s ease;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        button:hover {
+            background: #b09570;
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- The physical container that will be photographed -->
+    <div id="download-card">
+        <div class="accent-teal"></div>
+        <div class="accent-gold"></div>
+
+        <div class="card-content">
+            <img src="/logo-white.png" alt="Fondation NIYA" class="logo" crossorigin="anonymous" />
+            <h1>Votre QR Code<br />Conférence</h1>
+            <div id="qr-container"></div>
+            <div class="footer-text">www.niyafondation.org</div>
+        </div>
+    </div>
+
+    <button id="download">⬇️ Télécharger l'Affiche Complète (PNG)</button>
+
+    <script type="text/javascript">
+        const url = "https://niyafondation.org/qr";
+
+        // Render the styled QR Square
+        const qrCode = new QRCodeStyling({
+            width: 320,
+            height: 320,
+            type: "svg",
+            data: url,
+            margin: 0,
+            dotsOptions: {
+                color: "#0b1120", // Deep Navy
+                type: "rounded"
+            },
+            backgroundOptions: {
+                color: "#ffffff"
+            },
+            cornersSquareOptions: {
+                type: "extra-rounded",
+                color: "#c5a880" // Gold
+            },
+            cornersDotOptions: {
+                type: "dot",
+                color: "#0f8b8d" // Teal
+            }
+        });
+
+        qrCode.append(document.getElementById("qr-container"));
+
+        // Use html2canvas to convert the entire #download-card DOM to an Image
+        document.getElementById("download").addEventListener("click", () => {
+            const btn = document.getElementById("download");
+            btn.disabled = true;
+            btn.innerText = "Génération en cours...";
+
+            const card = document.getElementById("download-card");
+
+            html2canvas(card, {
+                scale: 3, // High-res for print (e.g. 1500px wide)
+                backgroundColor: "#0b1120",
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                const link = document.createElement("a");
+                link.download = "NIYA-Poster-Conference.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+
+                btn.disabled = false;
+                btn.innerText = "⬇️ Télécharger l'Affiche Complète (PNG)";
+            });
+        });
+    </script>
+</body>
+
+</html>
